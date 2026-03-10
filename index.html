@@ -390,18 +390,24 @@ imgFloat.visible=false
 
 // ---------- VIDEO BOARD (ZONE W) ----------
 
-// สร้าง video element
 let video = document.createElement("video")
+
 video.src = "snaptik_7533806547621645598_hd.mp4"
 video.loop = true
-video.muted = false
 video.controls = false
-video.volume = 1
+
+// สำคัญสำหรับ iPhone
 video.playsInline = true
 video.setAttribute("playsinline","")
 video.setAttribute("webkit-playsinline","")
-video.crossOrigin = "anonymous"
 
+// ป้องกัน fullscreen
+video.disablePictureInPicture = true
+
+// ป้องกัน Safari เปิด player
+video.preload = "auto"
+
+video.crossOrigin = "anonymous"
 // สร้าง texture จาก video
 let videoTexture = new THREE.VideoTexture(video)
 
@@ -710,11 +716,17 @@ let playing=false
 let interval
 
 function playSun(){
-playing=!playing
 if(playing){
-video.play()
+
+videoBoard.visible = true
+
+video.play().catch(()=>{})
+
 }else{
+
 video.pause()
+videoBoard.visible = false
+
 }
 
 imgShake.visible = playing
@@ -846,4 +858,5 @@ renderer.setSize(window.innerWidth,window.innerHeight)
 </script>
 </body>
 </html>
+
 
