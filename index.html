@@ -397,6 +397,9 @@ video.loop = true
 video.muted = false
 video.controls = false
 video.volume = 1
+video.playsInline = true
+video.setAttribute("playsinline","")
+video.setAttribute("webkit-playsinline","")
 video.crossOrigin = "anonymous"
 
 // สร้าง texture จาก video
@@ -843,3 +846,4 @@ renderer.setSize(window.innerWidth,window.innerHeight)
 </script>
 </body>
 </html>
+
